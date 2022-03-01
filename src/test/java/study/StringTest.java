@@ -27,4 +27,16 @@ public class StringTest {
         assertThat(splitExampleStringArray).containsExactly("1");   // 순서를 포함해서 정확히 일치
 
     }
+
+    @Test
+    void requirementCase2() {
+
+        /* "(1,2)" 값이 주어졌을 때 String의 substring() 메소드를 활용해 ()을 제거하고 "1,2"를 반환하도록 구현한다. */
+        String resultString = "1,2";
+        String splitExampleString = "(1,2)";
+        splitExampleString = splitExampleString.substring(1,splitExampleString.length()-1);
+
+        assertThat(splitExampleString).isEqualTo(resultString);
+    }
+
 }
