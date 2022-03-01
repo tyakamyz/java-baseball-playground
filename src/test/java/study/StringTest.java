@@ -64,6 +64,11 @@ public class StringTest {
         /* withMessageMatching: 모든 문자 일치 여부 확인 */
         assertThatExceptionOfType(IndexOutOfBoundsException.class).isThrownBy(() -> {
             exampleString.charAt(index);
+        }).withMessageMatching("String index out of range: 3");
+
+        /* 다른 표현 방식 */
+        assertThatExceptionOfType(IndexOutOfBoundsException.class).isThrownBy(() -> {
+            exampleString.charAt(index);
         }).withMessageMatching("String index out of range: \\d");
 
         /* TODO 다른 방법으로 예외 문구 변경 처리 가능한지 확인 필요 */
