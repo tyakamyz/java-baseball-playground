@@ -24,3 +24,9 @@ git checkout main // 기본 브랜치가 main인 경우
 git checkout -b 브랜치이름
 ex) git checkout -b apply-feedback
 ```
+---
+숫자야구게임 구현 기능 정리
+- 숫자 값 입력 InputView
+- 숫자 값 출력 ResultView
+- 임의의 수 3가지 조합 (생성, 중복 확인, 조합)
+- 게임 결과 확인 (숫자 비교, 결과 값 도출)
