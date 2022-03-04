@@ -1,5 +1,11 @@
 package mission1;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+
 public class BaseballGame {
     /*  - 기능 요구 사항 -
         기본적으로 1부터 9까지 서로 다른 수로 이루어진 3자리의 수를 맞추는 게임이다.
@@ -43,5 +49,46 @@ public class BaseballGame {
         1볼 1스트라이크
         …*/
 
+    /* 임의의 수 3가지 조합 (생성, 중복 확인, 조합) */
+    public List<Integer> CreateRandomNumberList(){
+
+        List<Integer> randomNumberList = new ArrayList<>();
+
+        while (randomNumberList.size() < 3){
+            randomNumberList = RandomNumberList(randomNumberList);
+        }
+
+        return randomNumberList;
+    }
+
+    public List<Integer> RandomNumberList(List<Integer> randomNumberList){
+
+        int randomNumber = RandomNumber();
+
+        if(!randomNumberList.contains(randomNumber)){
+            randomNumberList.add(randomNumber);
+        }
+
+        return randomNumberList;
+    }
+
+    public int RandomNumber(){
+
+        int min = 1;
+        int max = 9;
+        return (int)(Math.random() * (max - min)) + min;
+
+    }
+
+    /* 게임 결과 확인 (숫자 비교, 결과 값 도출) */
+
+    public static void main(String[] args) throws IOException {
+        InputView inputView = new InputView();
+        BaseballGame baseballGame = new BaseballGame();
+
+        List<Integer> inputNumberList = inputView.InputNumberAndToList();
+        List<Integer> randomNumberList = baseballGame.CreateRandomNumberList();
+
+    }
 
 }
