@@ -82,46 +82,47 @@ public class BaseballGame {
     }
 
     /* 게임 결과 확인 (숫자 비교, 결과 값 도출) */
-    public void GameResultOutput(List<Integer> inputNumberList, List<Integer> randomNumberList){
+    public boolean GameResultCheckAndReturnClearFlag(List<Integer> inputNumberList, List<Integer> randomNumberList){
+        ResultView resultView = new ResultView();
 
-        int strike = 0;
-        int ball = 0;
+        int strike = PerfectSameNumberCount(inputNumberList, randomNumberList);
+        int ball = DuplicationNumberCount(inputNumberList,randomNumberList) - strike;
 
-        /* 숫자 비교 */
-        for(int i=0; i<3; i++){
-            /* 스트라이크 확인 */
-            if(Objects.equals(inputNumberList.get(i), randomNumberList.get(i))){
-                strike++;
-            }
-        }
-
-        // ball = 중복값의 수 - strike
-        inputNumberList.retainAll(randomNumberList);
-        ball = inputNumberList.size() - strike;
-
-        
-        /* 결과 조합 */
-        StringBuilder resultStringBuilder = new StringBuilder();
-        
-        if(ball != 0){
-            resultStringBuilder.append(ball);
-            resultStringBuilder.append("볼 ");
-        }
-       
-        if(strike != 0){
-            resultStringBuilder.append(strike);
-            resultStringBuilder.append("스트라이크");
-        }
-
-        if(ball == 0 && strike == 0){
-            resultStringBuilder.append("낫싱");
-        }
+        resultView.GameResultMessage(ball, strike);
 
         if(strike == 3){
-            resultStringBuilder.append("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+            return true;
         }
 
-        System.out.println(resultStringBuilder.toString());
+        return false;
+    }
+
+    public int PerfectSameNumberCount(List<Integer> inputNumberList, List<Integer> randomNumberList) {
+
+        int perfectSameNumberCount = 0;
+
+        for(int i=0; i<inputNumberList.size(); i++){
+            perfectSameNumberCount = perfectSameNumberCount + BooleanToInt(NumberSameCheck(inputNumberList.get(i), randomNumberList.get(i)));
+        }
+
+        return perfectSameNumberCount;
+    }
+
+    public boolean NumberSameCheck(int standard, int target){
+        return standard == target;
+    }
+
+    public int BooleanToInt(boolean b) {
+        if(b) {
+            return 1;
+        }
+
+        return 0;
+    }
+
+    public int DuplicationNumberCount(List<Integer> inputNumberList, List<Integer> randomNumberList) {
+        inputNumberList.retainAll(randomNumberList);
+        return inputNumberList.size();
     }
 
     public static void main(String[] args) throws IOException {
@@ -130,9 +131,10 @@ public class BaseballGame {
 
         List<Integer> randomNumberList = baseballGame.CreateRandomNumberList();
 
-        while (true){
+        boolean clearFlag = false;
+        while (!clearFlag){
             List<Integer> inputNumberList = inputView.InputNumberAndToList();
-            baseballGame.GameResultOutput(inputNumberList, randomNumberList);
+            clearFlag = baseballGame.GameResultCheckAndReturnClearFlag(inputNumberList, randomNumberList);
         }
     }
 
