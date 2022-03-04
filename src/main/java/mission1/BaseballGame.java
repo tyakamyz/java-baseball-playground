@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class BaseballGame {
     /*  - 기능 요구 사항 -
@@ -81,14 +82,58 @@ public class BaseballGame {
     }
 
     /* 게임 결과 확인 (숫자 비교, 결과 값 도출) */
+    public void GameResultOutput(List<Integer> inputNumberList, List<Integer> randomNumberList){
+
+        int strike = 0;
+        int ball = 0;
+
+        /* 숫자 비교 */
+        for(int i=0; i<3; i++){
+            /* 스트라이크 확인 */
+            if(Objects.equals(inputNumberList.get(i), randomNumberList.get(i))){
+                strike++;
+            }
+        }
+
+        // ball = 중복값의 수 - strike
+        inputNumberList.retainAll(randomNumberList);
+        ball = inputNumberList.size() - strike;
+
+        
+        /* 결과 조합 */
+        StringBuilder resultStringBuilder = new StringBuilder();
+        
+        if(ball != 0){
+            resultStringBuilder.append(ball);
+            resultStringBuilder.append("볼 ");
+        }
+       
+        if(strike != 0){
+            resultStringBuilder.append(strike);
+            resultStringBuilder.append("스트라이크");
+        }
+
+        if(ball == 0 && strike == 0){
+            resultStringBuilder.append("낫싱");
+        }
+
+        if(strike == 3){
+            resultStringBuilder.append("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+        }
+
+        System.out.println(resultStringBuilder.toString());
+    }
 
     public static void main(String[] args) throws IOException {
         InputView inputView = new InputView();
         BaseballGame baseballGame = new BaseballGame();
 
-        List<Integer> inputNumberList = inputView.InputNumberAndToList();
         List<Integer> randomNumberList = baseballGame.CreateRandomNumberList();
 
+        while (true){
+            List<Integer> inputNumberList = inputView.InputNumberAndToList();
+            baseballGame.GameResultOutput(inputNumberList, randomNumberList);
+        }
     }
 
 }
