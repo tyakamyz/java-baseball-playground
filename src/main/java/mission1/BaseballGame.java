@@ -122,16 +122,30 @@ public class BaseballGame {
         return inputNumberList.size();
     }
 
-    public static void main(String[] args) throws IOException {
+    public void GamePlaying() throws IOException {
         InputView inputView = new InputView();
-        BaseballGame baseballGame = new BaseballGame();
-
-        List<Integer> randomNumberList = baseballGame.CreateRandomNumberList();
+        List<Integer> randomNumberList = CreateRandomNumberList();
 
         boolean clearFlag = false;
         while (!clearFlag){
             List<Integer> inputNumberList = inputView.InputNumberAndToList();
-            clearFlag = baseballGame.GameResultCheckAndReturnClearFlag(inputNumberList, randomNumberList);
+            clearFlag = GameResultCheckAndReturnClearFlag(inputNumberList, randomNumberList);
+        }
+    }
+
+    public int isGameReplayChoice() throws IOException {
+        InputView inputView = new InputView();
+
+        return inputView.InputGameStartOrEnd();
+    }
+
+    public static void main(String[] args) throws IOException {
+        BaseballGame baseballGame = new BaseballGame();
+
+        int inputGameStartOrEnd = 1;
+        while(inputGameStartOrEnd == 1){
+            baseballGame.GamePlaying();
+            inputGameStartOrEnd = baseballGame.isGameReplayChoice();
         }
     }
 

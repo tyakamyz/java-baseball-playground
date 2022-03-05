@@ -14,12 +14,12 @@ public class ResultView {
             resultStringBuilder.append("낫싱");
         }
 
-        if(ball != 0){
+        if(ball > 0){
             resultStringBuilder.append(ball);
             resultStringBuilder.append("볼 ");
         }
 
-        if(strike != 0){
+        if(strike > 0 && strike < 3){
             resultStringBuilder.append(strike);
             resultStringBuilder.append("스트라이크");
         }
