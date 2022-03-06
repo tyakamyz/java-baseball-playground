@@ -31,6 +31,6 @@ public class CreateAnswerNumber {
     }
 
     public int RandomNumber(){
-        return (int)(Math.random() * (MIN_NUMBER - MAX_NUMBER)) + MIN_NUMBER;
+        return (int)(Math.random() * (MAX_NUMBER - MIN_NUMBER)) + MIN_NUMBER;
     }
 }
