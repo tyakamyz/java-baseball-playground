@@ -18,9 +18,13 @@ public class BaseballGame {
 
         boolean clearFlag = false;
         while (!clearFlag){
-            /* 사용자 랜덤한 수 입력 */
-            List<Ball> userBallList = Ball.inputStringToBalls(InputView.inputNumber());
-            clearFlag = GameResultCheckAndReturnClearFlag(answerBallList, userBallList);
+            try{
+                /* 사용자 랜덤한 수 입력 */
+                List<Ball> userBallList = Ball.inputStringToBalls(InputView.inputNumber());
+                clearFlag = GameResultCheckAndReturnClearFlag(answerBallList, userBallList);
+            }catch (IllegalArgumentException e){
+                System.out.println("입력한 숫자가 올바르지 않습니다. 1부터 9까지 서로 다른 수로 이루어진 3자리의 수를 입력해주세요");
+            }
         }
     }
 

@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 
 public class Ball {
 
+    static final int BALLS_COUNT = 3;
+
     private final int round;
     private final int ball;
 
@@ -18,7 +20,17 @@ public class Ball {
     public static List<Ball> inputStringToBalls(String inputString) {
         List<Integer> inputNumberList = Arrays.stream(inputString.split("")).map(Integer::parseInt).collect(Collectors.toList());
 
+        /* 유효성 체크 */
+        ballsValidateCheck(inputNumberList);
+
         return inputListToBalls(inputNumberList);
+    }
+
+    private static void ballsValidateCheck(List<Integer> inputNumberList) {
+        /* 숫자가 3개가 아니거나 중복된 숫자가 있을 경우, 숫자 0이 있을 경우 */
+        if(inputNumberList.stream().distinct().count() != BALLS_COUNT || inputNumberList.contains(0)){
+            throw new IllegalArgumentException();
+        }
     }
 
     public static List<Ball> inputListToBalls(List<Integer> inputNumberList) {
