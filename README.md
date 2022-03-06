@@ -43,6 +43,6 @@
   - [ ] 3자리 전체 비교
   - [X] 라운드 별로 비교
     - [X] Strike
-    - [X] baseball.Ball
+    - [X] Ball
     - [X] Nothing
 - [ ] 반복 실행
