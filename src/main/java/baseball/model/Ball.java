@@ -15,11 +15,15 @@ public class Ball {
         this.ball = ball;
     }
 
-    public static List<Ball> inputStringToList(String inputString) {
+    public static List<Ball> inputStringToBalls(String inputString) {
+        List<Integer> inputNumberList = Arrays.stream(inputString.split("")).map(Integer::parseInt).collect(Collectors.toList());
 
+        return inputListToBalls(inputNumberList);
+    }
+
+    public static List<Ball> inputListToBalls(List<Integer> inputNumberList) {
         List<Ball> ballList = new ArrayList<>();
 
-        List<Integer> inputNumberList = Arrays.stream(inputString.split("")).map(Integer::parseInt).collect(Collectors.toList());
         for (int i = 0; i < inputNumberList.size(); i++) {
             ballList.add(new Ball(i+1, inputNumberList.get(i)));
         }
@@ -27,7 +31,7 @@ public class Ball {
         return ballList;
     }
 
-    public int getRound() {
+        public int getRound() {
         return round;
     }
 

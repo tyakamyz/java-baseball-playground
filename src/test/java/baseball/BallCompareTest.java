@@ -15,10 +15,12 @@ public class BallCompareTest {
     @DisplayName("정답과 사용자가 입력한 숫자 비교")
     @Test
     void ballsCompareResult(){
+        BallCompare ballCompare = new BallCompare();
+
         List<Ball> answerBallList = Arrays.asList(new Ball(1,1),new Ball(2,2),new Ball(3,3));
         List<Ball> userBallList = Arrays.asList(new Ball(1,2),new Ball(2,1),new Ball(3,3));
 
-        BallsStatusResult ballsStatusResult = BallCompare.ballsCompareResult(answerBallList, userBallList);
+        BallsStatusResult ballsStatusResult = ballCompare.ballsCompareResult(answerBallList, userBallList);
         BallsStatusResult answerBallsStatusResult = new BallsStatusResult(1,2);
 
         assertThat(ballsStatusResult)

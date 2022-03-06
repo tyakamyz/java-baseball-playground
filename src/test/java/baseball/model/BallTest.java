@@ -17,7 +17,7 @@ public class BallTest {
     @DisplayName("입력받은 문자열을 List 형태로 타입 변경")
     @Test
     void inputStringToList(){
-        assertThat(Ball.inputStringToList("123"))
+        assertThat(Ball.inputStringToBalls("123"))
                 .usingRecursiveComparison()
                 .isEqualTo(Arrays.asList(new Ball(1,1),new Ball(2,2),new Ball(3,3)));
     }

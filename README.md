@@ -48,4 +48,4 @@
     - [X] Strike
     - [X] Ball
     - [X] Nothing
-- [ ] 반복 실행
+- [X] 반복 실행

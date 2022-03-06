@@ -21,7 +21,7 @@ public class BallCompare {
         return Ball.BallStatus.NOTHING;
     }
 
-    public static BallsStatusResult ballsCompareResult(List<Ball> answerBallList, List<Ball> userBallList) {
+    public BallsStatusResult ballsCompareResult(List<Ball> answerBallList, List<Ball> userBallList) {
 
         List<Ball.BallStatus> ballStatusList = new ArrayList<>();
 
