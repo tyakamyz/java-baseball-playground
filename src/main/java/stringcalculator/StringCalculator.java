@@ -1,4 +1,4 @@
-package mission1;
+package stringcalculator;
 
 import java.util.*;
 
